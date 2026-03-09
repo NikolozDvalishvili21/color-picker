@@ -1,22 +1,10 @@
 import { converter, formatHex } from "culori";
-import { PaletteInput } from "@/src/types/types";
+import { PaletteInput, PaletteResult } from "@/src/types/types";
 import { classifyColor } from "./classifyColor";
 import { applyVibeRules, applyWebsiteTypeRules } from "./applyRules";
+// import { scorePalette } from "./scorePalette";
 
 const toOklch = converter("oklch");
-
-type PaletteResult = {
-  background: string;
-  surface: string;
-  border: string;
-  primary: string;
-  secondary: string;
-  accent: string;
-  text: string;
-  mutedText: string;
-  button: string;
-  buttonText: string;
-};
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
@@ -50,6 +38,8 @@ export function generatePalette(input: PaletteInput): PaletteResult {
   const meta = classifyColor(baseColor);
 
   let palette: PaletteResult;
+
+  
 
   if (meta.kind === "light") {
     palette = {
